@@ -75,9 +75,8 @@ class TriggerXAlarmScheduler {
         try {
             // Use setExactAndAllowWhileIdle for alarms that need to fire even in Doze mode.
             // For AlarmClock behavior (shows in status bar), use AlarmManager.AlarmClockInfo
-            alarmManager.setExactAndAllowWhileIdle(
-                AlarmManager.RTC_WAKEUP,
-                triggerAtMillis,
+            alarmManager.setAlarmClock(
+                AlarmManager.AlarmClockInfo(triggerAtMillis, pendingIntent),
                 pendingIntent
             )
             LoggerConfig.logger.i("Alarm [$alarmId] scheduled for $triggerAtMillis")
